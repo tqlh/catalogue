@@ -22,9 +22,23 @@ function buildCategories(){
   const categories=["All",...new Set(products.map(product=>product.category).filter(Boolean))];
   cats.innerHTML=categories.map(category=>`<button class="cat ${category===active?"active":""}" data-cat="${esc(category)}">${category==="All"?(lang==='ru'?"Все":"All"):esc(catLabel(category))}</button>`).join("");
 }
+const SEARCH_SYNONYMS=[
+  [/\bPDRN\b/i, "пдрн полинуклеотид полинуклеотидов"],
+  [/\bPN\b/i, "пдрн полинуклеотид"],
+  [/\bPCL\b/i, "поликапролактон полипролактон полипролактона"],
+  [/\bPLLA\b/i, "полимолочная кислота плла"],
+  [/\bPDLLA\b/i, "полимолочная кислота пдлла"],
+  [/\bHA\b/i, "гиалуроновая кислота гиалуроновой"],
+];
+function buildSearchBlob(product){
+  const base=`${product.name} ${product.search} ${product.packaging} ${product.category} ${product.variants.join(" ")} ${product.info||""} ${product.infoRu||""}`;
+  let extra="";
+  SEARCH_SYNONYMS.forEach(([pattern,terms])=>{ if(pattern.test(base)) extra+=" "+terms; });
+  return (base+extra).toLowerCase();
+}
 function render(){
   const query=search.value.trim().toLowerCase();
-  const filtered=products.map((product,index)=>({product,index})).filter(({product})=>(active==="All"||product.category===active)&&(!query||`${product.name} ${product.search} ${product.packaging} ${product.category} ${product.variants.join(" ")}`.toLowerCase().includes(query)));
+  const filtered=products.map((product,index)=>({product,index})).filter(({product})=>(active==="All"||product.category===active)&&(!query||(product._searchBlob||(product._searchBlob=buildSearchBlob(product))).includes(query)));
   const formats=products.reduce((total,product)=>total+(product.variants?.length||1),0);
   count.innerHTML=`<strong>${filtered.length}</strong> ${filtered.length===1?t("productLine"):t("productLines")} <span>· ${formats} ${t("formats")}</span>`;
   empty.hidden=filtered.length>0;
