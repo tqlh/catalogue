@@ -1,5 +1,5 @@
 let products=[], active="All", lang="en";
-const search=document.querySelector("#search"), grid=document.querySelector("#grid"), cats=document.querySelector("#categories"), count=document.querySelector("#count"), empty=document.querySelector("#empty"), modal=document.querySelector("#modal"), modalContent=document.querySelector("#modalContent"), backToTop=document.querySelector("#backToTop"), socialToggle=document.querySelector("#socialToggle"), socialDropdown=document.querySelector("#socialDropdown"), socialMenu=document.querySelector(".socialMenu");
+const search=document.querySelector("#search"), grid=document.querySelector("#grid"), cats=document.querySelector("#categories"), count=document.querySelector("#count"), empty=document.querySelector("#empty"), modal=document.querySelector("#modal"), modalContent=document.querySelector("#modalContent"), backToTop=document.querySelector("#backToTop"), socialToggle=document.querySelector("#socialToggle"), socialDropdown=document.querySelector("#socialDropdown"), socialMenu=document.querySelector(".socialMenu"), zoomOverlay=document.querySelector("#zoomOverlay"), zoomImg=document.querySelector("#zoomImg");
 
 const copy={
   en:{eyebrow:"MEDICAL BEAUTY PRODUCTS",title:"Product Catalogue",subtitle:"Premium Korean aesthetic products, presented by product line and available format.",search:"Search products…",clickHint:"Click a product to view details",empty:"No products found.",available:"Available formats",packaging:"Packaging",note:"Product information is provided for catalogue and sourcing purposes. Confirm current manufacturer documentation, composition, intended use and regulatory status for the specific product and destination market before use.",productLine:"product line",productLines:"product lines",formats:"formats total",footer:"Korean Aesthetic Products · Global Distribution",connect:"Connect"},
@@ -62,6 +62,13 @@ grid.addEventListener("click",event=>{
 document.querySelector(".backdrop").addEventListener("click",close);
 document.querySelector("#close").addEventListener("click",close);
 function closeSocial(){socialMenu.classList.remove("open");socialDropdown.hidden=true;socialToggle.setAttribute("aria-expanded","false")}
+function openZoom(src,alt){zoomImg.src=src;zoomImg.alt=alt;zoomOverlay.hidden=false}
+function closeZoom(){zoomOverlay.hidden=true;zoomImg.src=""}
+modalContent.addEventListener("click",event=>{
+  const img=event.target.closest(".modalImage img");
+  if(img)openZoom(img.src,img.alt);
+});
+zoomOverlay.addEventListener("click",closeZoom);
 socialToggle.addEventListener("click",event=>{
   event.stopPropagation();
   const isOpen=socialMenu.classList.toggle("open");
@@ -69,7 +76,7 @@ socialToggle.addEventListener("click",event=>{
   socialToggle.setAttribute("aria-expanded",String(isOpen));
 });
 document.addEventListener("click",event=>{if(!socialMenu.contains(event.target))closeSocial()});
-document.addEventListener("keydown",event=>{if(event.key==="Escape"){close();closeSocial()}});
+document.addEventListener("keydown",event=>{if(event.key==="Escape"){closeZoom();close();closeSocial()}});
 function updateScrollState(){document.body.classList.toggle("scrolled",window.scrollY>86);backToTop.classList.toggle("visible",window.scrollY>500)}
 window.addEventListener("scroll",updateScrollState,{passive:true});
 backToTop.addEventListener("click",()=>window.scrollTo({top:0,behavior:"smooth"}));

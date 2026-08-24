@@ -101,3 +101,9 @@ body:after{z-index:-5}
 .socialText small{font-size:11px;color:#93727c;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 @media(max-width:650px){.socialToggle span{display:none}.socialToggle{padding:0 10px;gap:0}.socialDropdown{right:-10px;width:224px}}
 body.modalOpen{overflow:hidden}
+.modalImage img{cursor:zoom-in}
+.zoomOverlay{position:fixed;inset:0;z-index:60;background:rgba(30,14,20,.82);backdrop-filter:blur(6px);align-items:center;justify-content:center;padding:5vh 5vw;cursor:zoom-out;animation:zoomFade .15s ease}
+.zoomOverlay[hidden]{display:none}
+.zoomOverlay:not([hidden]){display:flex}
+.zoomOverlay img{max-width:100%;max-height:100%;border-radius:14px;box-shadow:0 30px 90px rgba(0,0,0,.5);background:#fff;object-fit:contain}
+@keyframes zoomFade{from{opacity:0}to{opacity:1}}
