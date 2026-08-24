@@ -92,6 +92,8 @@ body:after{z-index:-5}
 .socialMenu.open .socialToggle{border-color:rgba(230,83,108,.5);color:var(--pink);background:#fff}
 .socialMenu.open .socialChevron{transform:rotate(180deg)}
 .socialDropdown{position:absolute;right:0;top:calc(100% + 10px);width:246px;padding:8px;background:rgba(255,255,255,.97);border:1px solid rgba(222,177,190,.35);border-radius:16px;box-shadow:0 20px 50px rgba(103,31,52,.16);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);z-index:30}
+.socialGroupLabel{padding:8px 9px 4px;font:700 10px "DM Sans";letter-spacing:.06em;text-transform:uppercase;color:#c493a1}
+.socialDivider{height:1px;margin:6px 4px;background:rgba(222,177,190,.4)}
 .socialLink{display:flex;align-items:center;gap:11px;padding:10px 9px;border-radius:11px;text-decoration:none;color:inherit;transition:background .15s ease}
 .socialLink:hover{background:rgba(252,226,235,.55)}
 .socialIcon{flex:0 0 auto;width:32px;height:32px;border-radius:9px;background:linear-gradient(135deg,#fbe6ec,#f8d3de);display:flex;align-items:center;justify-content:center;color:#c33b59}
