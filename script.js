@@ -5,8 +5,8 @@
    3. Paste both values below between the quotes. Leave as-is to see the
       form running in "demo" mode (it will show an error instead of sending).
 */
-const TELEGRAM_BOT_TOKEN = "PASTE_YOUR_BOT_TOKEN_HERE";
-const TELEGRAM_CHAT_ID = "PASTE_YOUR_CHAT_ID_HERE";
+const TELEGRAM_BOT_TOKEN = "8707713894:AAHrjDWxkQ-lbY_pEIA9HEZC2kb1oq7edQg";
+const TELEGRAM_CHAT_ID = "8844717831";
 /* ====================================== */
 
 let products=[], active="All", lang="en";
