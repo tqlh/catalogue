@@ -217,9 +217,9 @@ inquiryForm.addEventListener("submit",async event=>{
   const hp=document.querySelector("#inquiryHp")?.value.trim()||"";
 
   if(!name){inquiryStatus.textContent=t("inquiryErrName");inquiryStatus.className="inquiryStatus err";return}
-  if(email&&!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)){inquiryStatus.textContent=t("inquiryErrEmail");inquiryStatus.className="inquiryStatus err";return}
-  if(phone&&(phone.replace(/\D/g,"").length<7||!/^[+\d][\d\s\-().]*$/.test(phone))){inquiryStatus.textContent=t("inquiryErrPhone");inquiryStatus.className="inquiryStatus err";return}
-  if(!phone&&!email){inquiryStatus.textContent=t("inquiryErrNoContact");inquiryStatus.className="inquiryStatus err";return}
+  const emailOk=email&&/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email);
+  const phoneOk=phone&&phone.replace(/\D/g,"").length>=7&&/^[+\d][\d\s\-().]*$/.test(phone);
+  if(!emailOk&&!phoneOk){inquiryStatus.textContent=t("inquiryErrNoContact");inquiryStatus.className="inquiryStatus err";return}
 
   inquirySubmit.disabled=true;
   inquirySubmit.querySelector("span").textContent=t("inquirySending");
