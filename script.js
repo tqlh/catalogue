@@ -7,15 +7,21 @@ const INQUIRY_ENDPOINT = "https://delicate-poetry.dmitry-kim24.workers.dev";
 /* ============================= */
 
 let products=[], active="All", lang="en";
-const search=document.querySelector("#search"), grid=document.querySelector("#grid"), cats=document.querySelector("#categories"), count=document.querySelector("#count"), empty=document.querySelector("#empty"), modal=document.querySelector("#modal"), modalContent=document.querySelector("#modalContent"), backToTop=document.querySelector("#backToTop"), socialToggle=document.querySelector("#socialToggle"), socialDropdown=document.querySelector("#socialDropdown"), socialMenu=document.querySelector(".socialMenu"), zoomOverlay=document.querySelector("#zoomOverlay"), zoomImg=document.querySelector("#zoomImg");
+const search=document.querySelector("#search"), grid=document.querySelector("#grid"), cats=document.querySelector("#categories"), count=document.querySelector("#count"), categoryIntro=document.querySelector("#categoryIntro"), empty=document.querySelector("#empty"), modal=document.querySelector("#modal"), modalContent=document.querySelector("#modalContent"), backToTop=document.querySelector("#backToTop"), socialToggle=document.querySelector("#socialToggle"), socialDropdown=document.querySelector("#socialDropdown"), socialMenu=document.querySelector(".socialMenu"), zoomOverlay=document.querySelector("#zoomOverlay"), zoomImg=document.querySelector("#zoomImg");
 
 const copy={
   en:{eyebrow:"MEDICAL BEAUTY PRODUCTS",title:"Product Catalogue",subtitle:"Premium Korean aesthetic products, presented by product line and available format.",search:"Search products…",clickHint:"Click a product to view details",empty:"No products found.",available:"Available formats",packaging:"Packaging",note:"Product information is provided for catalogue and sourcing purposes. Confirm current manufacturer documentation, composition, intended use and regulatory status for the specific product and destination market before use.",productLine:"product line",productLines:"product lines",formats:"formats total",footer:"Korean Aesthetic Products · Global Distribution",connect:"Connect",followLabel:"Follow",chatLabel:"Chat with us",channelLabel:"Channel · t.me/doublej_holdings",msgLabel:"Send a message",
-    addToQuote:"Add to Quote List",removeFromQuote:"Remove from Quote List",quoteBtn:"Quote List",inquiryEyebrow:"GET IN TOUCH",inquiryTitle:"Your Quote Request",inquirySub:"Add products as you browse, then leave your details below.",fieldName:"Name",fieldPhone:"Phone",fieldEmail:"Email",fieldProduct:"Product",fieldMessage:"Message",fieldMessagePh:"Quantities, timeline, destination market…",inquiryHint:"Please provide either a phone number or an email so we can reach you.",inquirySend:"Send Inquiry",inquirySending:"Sending…",inquirySent:"Thank you — your inquiry has been sent. We'll contact you shortly.",inquiryErrNoContact:"Please add a phone number or email.",inquiryErrName:"Please enter your name.",inquiryErrEmail:"Please enter a valid email address.",inquiryErrPhone:"Please enter a valid phone number.",inquiryErrSend:"Something went wrong. Please try WhatsApp or Telegram instead — links are in Connect, top right.",quoteListLabel:"Products",quoteListEmpty:"No products added yet — browse the catalogue and tap \"Add to Quote List\", or just send a general inquiry below.",removeItem:"Remove"},
+    addToQuote:"Add to Quote List",removeFromQuote:"Remove from Quote List",quoteBtn:"Quote List",inquiryEyebrow:"GET IN TOUCH",inquiryTitle:"Your Quote Request",inquirySub:"Add products as you browse, then leave your details below.",fieldName:"Name",fieldPhone:"Phone",fieldEmail:"Email",fieldProduct:"Product",fieldInstagram:"Instagram",fieldMessage:"Message",fieldMessagePh:"Quantities, timeline, destination market…",specsLabel:"Specifications",inquiryHint:"Please provide a phone number, email, or Instagram handle so we can reach you. (Just one is enough 😊)",inquirySend:"Send Inquiry",inquirySending:"Sending…",inquirySent:"Thank you — your inquiry has been sent. We'll contact you shortly.",inquiryErrNoContact:"Please add a phone number, email, or Instagram handle.",inquiryErrName:"Please enter your name.",inquiryErrEmail:"Please enter a valid email address.",inquiryErrPhone:"Please enter a valid phone number.",inquiryErrSend:"Something went wrong. Please try WhatsApp or Telegram instead — links are in Connect, top right.",quoteListLabel:"Products",quoteListEmpty:"No products added yet — browse the catalogue and tap \"Add to Quote List\", or just send a general inquiry below.",removeItem:"Remove"},
   ru:{eyebrow:"ЭСТЕТИЧЕСКАЯ МЕДИЦИНА",title:"Каталог продукции",subtitle:"Премиальная корейская эстетическая продукция по линейкам и доступным форматам.",search:"Поиск продукции…",clickHint:"Нажмите на продукт, чтобы посмотреть детали",empty:"Ничего не найдено.",available:"Доступные форматы",packaging:"Упаковка",note:"Информация представлена для целей каталога и подбора продукции. Перед применением необходимо подтвердить актуальную документацию производителя, состав, назначение и регистрационный статус конкретного продукта для страны назначения.",productLine:"товарная позиция",productLines:"товарных позиций",formats:"форматов всего",footer:"Корейская эстетическая продукция · Глобальная дистрибуция",connect:"Контакты",followLabel:"Мы в соцсетях",chatLabel:"Написать нам",channelLabel:"Канал · t.me/doublej_holdings",msgLabel:"Написать сообщение",
-    addToQuote:"Добавить в список запроса",removeFromQuote:"Убрать из списка",quoteBtn:"Сделать запрос",inquiryEyebrow:"СВЯЗАТЬСЯ С НАМИ",inquiryTitle:"Ваш запрос",inquirySub:"Добавляйте товары по мере просмотра, затем оставьте свои данные ниже.",fieldName:"Имя",fieldPhone:"Телефон",fieldEmail:"Email",fieldProduct:"Продукт",fieldMessage:"Сообщение",fieldMessagePh:"Количество, сроки, страна назначения…",inquiryHint:"Укажите телефон или email, чтобы мы могли с вами связаться.",inquirySend:"Отправить запрос",inquirySending:"Отправка…",inquirySent:"Спасибо — ваш запрос отправлен. Мы скоро с вами свяжемся.",inquiryErrNoContact:"Пожалуйста, укажите телефон или email.",inquiryErrName:"Пожалуйста, укажите ваше имя.",inquiryErrEmail:"Пожалуйста, укажите корректный email.",inquiryErrPhone:"Пожалуйста, укажите корректный номер телефона.",inquiryErrSend:"Что-то пошло не так. Попробуйте написать в WhatsApp или Telegram — ссылки в разделе «Контакты» вверху справа.",quoteListLabel:"Товары",quoteListEmpty:"Пока ничего не добавлено — просматривайте каталог и нажимайте «Добавить в список запроса», либо отправьте общий запрос ниже.",removeItem:"Убрать"}
+    addToQuote:"Добавить в список запроса",removeFromQuote:"Убрать из списка",quoteBtn:"Сделать запрос",inquiryEyebrow:"СВЯЗАТЬСЯ С НАМИ",inquiryTitle:"Ваш запрос",inquirySub:"Добавляйте товары по мере просмотра, затем оставьте свои данные ниже.",fieldName:"Имя",fieldPhone:"Телефон",fieldEmail:"Email",fieldProduct:"Продукт",fieldInstagram:"Instagram",fieldMessage:"Сообщение",fieldMessagePh:"Количество, сроки, страна назначения…",specsLabel:"Характеристики",inquiryHint:"Укажите телефон, email или Instagram, чтобы мы могли с вами связаться. (Достаточно одного 😊)",inquirySend:"Отправить запрос",inquirySending:"Отправка…",inquirySent:"Спасибо — ваш запрос отправлен. Мы скоро с вами свяжемся.",inquiryErrNoContact:"Пожалуйста, укажите телефон, email или Instagram.",inquiryErrName:"Пожалуйста, укажите ваше имя.",inquiryErrEmail:"Пожалуйста, укажите корректный email.",inquiryErrPhone:"Пожалуйста, укажите корректный номер телефона.",inquiryErrSend:"Что-то пошло не так. Попробуйте написать в WhatsApp или Telegram — ссылки в разделе «Контакты» вверху справа.",quoteListLabel:"Товары",quoteListEmpty:"Пока ничего не добавлено — просматривайте каталог и нажимайте «Добавить в список запроса», либо отправьте общий запрос ниже.",removeItem:"Убрать"}
 };
 const catRu={"FILLER":"ФИЛЛЕРЫ","BODY FILLER":"ФИЛЛЕРЫ ДЛЯ ТЕЛА","PDRN / PN":"PDRN / PN","EXOSOME":"ЭКЗОСОМЫ","HA / HYDRATION":"ГА / УВЛАЖНЕНИЕ","COLLAGEN / REPAIR":"КОЛЛАГЕН / ВОССТАНОВЛЕНИЕ","COLLAGEN STIMULATORS / REGENERATIVE":"СТИМУЛЯТОРЫ КОЛЛАГЕНА / РЕГЕНЕРАЦИЯ","NUMBING CREAM":"АНЕСТЕЗИРУЮЩИЕ КРЕМЫ","INJECTIONS / SOLUTIONS":"ИНЪЕКЦИИ / РАСТВОРЫ","TOXINS":"ТОКСИНЫ","LIPOLYTIC":"ЛИПОЛИТИКИ"};
+const categoryIntros={
+  "LEXYAL":{
+    en:"LEXYAL is a full-range aesthetic line spanning dermal fillers, PN skin boosters, a lipolytic solution, and a PLLA collagen stimulator — covering most major treatment categories under one consistent manufacturing standard.",
+    ru:"LEXYAL — полная линейка эстетической продукции, охватывающая филлеры на основе ГК, ПН-бустеры, липолитик и биостимулятор коллагена PLLA — большинство основных категорий процедур в рамках единого производственного стандарта."
+  }
+};
 function t(key){return copy[lang][key]||key}
 function catLabel(category){return lang==='ru'?(catRu[category]||category):category}
 function esc(value){return String(value??"").replace(/[&<>"']/g,char=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[char]))}
@@ -29,7 +35,8 @@ function localizePack(value){
   });
 }
 function buildCategories(){
-  const categories=["All",...new Set(products.map(product=>product.category).filter(Boolean))];
+  const rawCategories=[...new Set(products.map(product=>product.category).filter(Boolean))];
+  const categories=["All",...rawCategories.sort((a,b)=>(a==="LEXYAL"?-1:b==="LEXYAL"?1:0))];
   cats.innerHTML=categories.map(category=>`<button class="cat ${category===active?"active":""}" data-cat="${esc(category)}">${category==="All"?(lang==='ru'?"Все":"All"):esc(catLabel(category))}</button>`).join("");
 }
 const SEARCH_SYNONYMS=[
@@ -51,6 +58,9 @@ function render(){
   const filtered=products.map((product,index)=>({product,index})).filter(({product})=>(active==="All"||product.category===active)&&(!query||(product._searchBlob||(product._searchBlob=buildSearchBlob(product))).includes(query)));
   const formats=products.reduce((total,product)=>total+(product.variants?.length||1),0);
   count.innerHTML=`<strong>${filtered.length}</strong> ${filtered.length===1?t("productLine"):t("productLines")} <span>· ${formats} ${t("formats")}</span>`;
+  const intro=categoryIntros[active];
+  categoryIntro.hidden=!intro;
+  if(intro)categoryIntro.textContent=intro[lang]||intro.en;
   empty.hidden=filtered.length>0;
   grid.innerHTML=filtered.map(({product,index})=>{
     const variants=product.variants?.length?`<div class="cardVariants">${product.variants.map(variant=>`<span>${esc(variant)}</span>`).join("")}</div>`:"";
@@ -89,6 +99,16 @@ window.addEventListener("popstate",()=>{
   else if(name==="modal")close(true);
   else if(name==="inquiry")closeInquiry(true);
 });
+function renderDescription(text){
+  const paragraphs=(text||"").split(/\n\n+/).map(p=>p.trim()).filter(Boolean);
+  if(!paragraphs.length)return "";
+  const [first,...rest]=paragraphs;
+  const generalHtml=`<p class="descGeneral">${esc(first)}</p>`;
+  if(!rest.length)return generalHtml;
+  const bulletItems=rest.flatMap(paragraph=>paragraph.split(/\n+/).map(line=>line.trim()).filter(Boolean));
+  const specsHtml=`<div class="descSpecs"><div class="descSpecsLabel">${t("specsLabel")}</div><ul class="descSpecsList">${bulletItems.map(item=>`<li>${esc(item)}</li>`).join("")}</ul></div>`;
+  return generalHtml+specsHtml;
+}
 function close(fromPopstate){modal.hidden=true;document.body.classList.remove("modalOpen");if(!fromPopstate)popLayer("modal")}
 fetch("products.json").then(response=>response.json()).then(data=>{products=data;buildCategories();render()});
 cats.addEventListener("click",event=>{if(!event.target.matches(".cat"))return;active=event.target.dataset.cat;buildCategories();render()});
@@ -104,7 +124,7 @@ grid.addEventListener("click",event=>{
   const product=products[+card.dataset.i];
   const variants=product.variants?.length?`<div class="variantBlock"><div class="variantLabel">${t("available")}</div><div class="variants">${product.variants.map(variant=>`<span>${esc(variant)}</span>`).join("")}</div></div>`:"";
   const slug=product.image||slugify(product.name);
-  modalContent.innerHTML=`<div class="modalGrid"><div class="modalText"><div class="modalCat">${esc(catLabel(product.category))}</div><h2>${esc(product.name)}</h2>${variants}<div class="meta"><strong>${t("packaging")}:</strong> ${esc(localizePack(product.packaging)||"—")}</div><div class="description">${esc(lang==='ru'?(product.infoRu||product.info):product.info)}</div>${quoteToggleBtnHtml(product.name)}<div class="note">${t("note")}</div></div><div class="modalImage"><img src="images/${slug}.jpg" alt="${esc(product.name)}" onerror="onProductImgError(this,'${slug}')"></div></div>`;
+  modalContent.innerHTML=`<div class="modalGrid"><div class="modalText"><div class="modalCat">${esc(catLabel(product.category))}</div><h2>${esc(product.name)}</h2>${variants}<div class="meta"><strong>${t("packaging")}:</strong> ${esc(localizePack(product.packaging)||"—")}</div><div class="description">${renderDescription(lang==='ru'?(product.infoRu||product.info):product.info)}</div>${quoteToggleBtnHtml(product.name)}<div class="note">${t("note")}</div></div><div class="modalImage"><img src="images/${slug}.jpg" alt="${esc(product.name)}" onerror="onProductImgError(this,'${slug}')"></div></div>`;
   modal.hidden=false;
   document.body.classList.add("modalOpen");
   pushLayer("modal");
@@ -213,13 +233,15 @@ inquiryForm.addEventListener("submit",async event=>{
   const name=document.querySelector("#inquiryName").value.trim();
   const phone=document.querySelector("#inquiryPhone").value.trim();
   const email=document.querySelector("#inquiryEmail").value.trim();
+  const instagram=document.querySelector("#inquiryInstagram").value.trim();
   const message=document.querySelector("#inquiryMessage").value.trim();
   const hp=document.querySelector("#inquiryHp")?.value.trim()||"";
 
   if(!name){inquiryStatus.textContent=t("inquiryErrName");inquiryStatus.className="inquiryStatus err";return}
   const emailOk=email&&/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email);
   const phoneOk=phone&&phone.replace(/\D/g,"").length>=7&&/^[+\d][\d\s\-().]*$/.test(phone);
-  if(!emailOk&&!phoneOk){inquiryStatus.textContent=t("inquiryErrNoContact");inquiryStatus.className="inquiryStatus err";return}
+  const instagramOk=instagram&&instagram.replace(/^@/,"").length>=2;
+  if(!emailOk&&!phoneOk&&!instagramOk){inquiryStatus.textContent=t("inquiryErrNoContact");inquiryStatus.className="inquiryStatus err";return}
 
   inquirySubmit.disabled=true;
   inquirySubmit.querySelector("span").textContent=t("inquirySending");
@@ -227,7 +249,7 @@ inquiryForm.addEventListener("submit",async event=>{
   inquiryStatus.className="inquiryStatus";
 
   try{
-    await sendInquiry({name,phone,email,products:quoteItems,message,lang,hp});
+    await sendInquiry({name,phone,email,instagram,products:quoteItems,message,lang,hp});
     inquiryForm.reset();
     quoteItems=[];
     renderQuoteList();

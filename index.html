@@ -67,6 +67,7 @@
     <div id="categories"></div>
   </div>
   <div class="catalogMeta"><div id="count"></div><div class="metaHint" data-i18n="clickHint">Click a product to view details</div></div>
+  <div id="categoryIntro" class="categoryIntro" hidden></div>
   <section id="grid"></section><div id="empty" class="empty" hidden data-i18n="empty">No products found.</div>
 </section>
 </main>
@@ -113,10 +114,14 @@
           </label>
         </div>
         <label>
+          <span data-i18n="fieldInstagram">Instagram</span>
+          <input type="text" name="instagram" id="inquiryInstagram" autocomplete="off" placeholder="@yourhandle">
+        </label>
+        <label>
           <span data-i18n="fieldMessage">Message</span>
           <textarea name="message" id="inquiryMessage" rows="3" data-i18n-placeholder="fieldMessagePh" placeholder="Quantities, timeline, destination market…"></textarea>
         </label>
-        <p class="inquiryHint" data-i18n="inquiryHint">Please provide either a phone number or an email so we can reach you.</p>
+        <p class="inquiryHint" data-i18n="inquiryHint">Please provide a phone number, email, or Instagram handle so we can reach you. (Just one is enough 😊)</p>
         <button type="submit" id="inquirySubmit" class="inquirySubmit"><span data-i18n="inquirySend">Send Inquiry</span></button>
         <div id="inquiryStatus" class="inquiryStatus" role="status"></div>
       </form>

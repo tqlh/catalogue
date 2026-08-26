@@ -1428,5 +1428,74 @@
     "info": "Ginkobal is a ginkgo biloba extract injection, used to support microcirculation.\n\nOften included in mesotherapy cocktails or general wellness/circulation-support protocols rather than used as a standalone aesthetic treatment.",
     "search": "Ginkobal inj.",
     "infoRu": "Ginkobal — инъекция экстракта гинкго билоба, применяется для поддержки микроциркуляции.\n\nЧасто включается в мезотерапевтические коктейли или протоколы общего оздоровления/поддержки кровообращения, а не используется как самостоятельное эстетическое средство."
+  },
+  {
+    "name": "LEXYAL Filler",
+    "category": "LEXYAL",
+    "variants": [
+      "Fine",
+      "Deep",
+      "Grand"
+    ],
+    "packaging": "1 syringe",
+    "info": "LEXYAL Filler is a monophasic HA dermal filler for wrinkle correction and facial contouring — Fine for shallow lines, Deep for deeper wrinkles, and Grand for facial contouring and volume. Available with or without lidocaine.\n\nPNCL patented stabilization technology\n24 mg/mL cross-linked hyaluronic acid, >95% purity\nBDDE below 0.2 ppm\nDynamic viscosity 15-20% higher than standard fillers (310-380 Pa·s)\nZero detectable endotoxin (manufacturer-stated)\nCE-certified, 24-month shelf life",
+    "search": "LEXYAL Filler Fine LEXYAL Filler Deep LEXYAL Filler Grand",
+    "infoRu": "LEXYAL Filler — монофазный филлер на основе ГК для коррекции морщин и контурирования лица: Fine — для неглубоких линий, Deep — для более глубоких морщин, Grand — для контурирования и объёма лица. Доступен с лидокаином и без.\n\nТехнология стабилизации PNCL\nСшитая гиалуроновая кислота 24 мг/мл, чистота >95%\nОстаточный BDDE ниже 0,2 ppm\nДинамическая вязкость на 15–20% выше стандартных филлеров (310–380 Па·с)\nОтсутствие обнаруживаемых эндотоксинов (по данным производителя)\nСертификат CE, срок годности 24 месяца"
+  },
+  {
+    "name": "LEXYAL DIVA FACE",
+    "category": "LEXYAL",
+    "variants": [],
+    "packaging": "1 syringe",
+    "info": "LEXYAL DIVA FACE is a PN skin booster for full-face biorevitalization — improving hydration, elasticity, and overall skin quality through gradual tissue regeneration.\n\nPolynucleotide derived from salmon DNA, molecular weight 250-800 kDa\n2% concentration, 40 mg per 2 mL syringe\nISO 10993-5 biocompatibility tested\nMFDS-approved",
+    "search": "LEXYAL DIVA FACE",
+    "infoRu": "LEXYAL DIVA FACE — бустер на основе ПН для биоревитализации всего лица — улучшение увлажнённости, эластичности и общего качества кожи за счёт постепенной регенерации тканей.\n\nПолинуклеотид из ДНК лосося, молекулярная масса 250–800 кДа\nКонцентрация 2%, 40 мг на шприц 2 мл\nПроверена биосовместимость по ISO 10993-5\nОдобрен MFDS"
+  },
+  {
+    "name": "LEXYAL DIVA EYES",
+    "category": "LEXYAL",
+    "variants": [],
+    "packaging": "1 syringe",
+    "info": "LEXYAL DIVA EYES is a PN skin booster formulated specifically for the delicate periorbital area — dark circles, fine lines, and volume loss around the eyes.\n\n0.2% PN concentration (2 mg/mL) — diluted vs. DIVA FACE for thinner under-eye skin\n1.1 mL syringe\nInjected into the fat layer / superficial fascia\nTypical course: 3 sessions, 4 weeks apart",
+    "search": "LEXYAL DIVA EYES",
+    "infoRu": "LEXYAL DIVA EYES — бустер на основе ПН, разработан специально для деликатной периорбитальной зоны — тёмные круги, тонкие линии, потеря объёма вокруг глаз.\n\nКонцентрация ПН 0,2% (2 мг/мл) — снижена по сравнению с DIVA FACE для тонкой кожи под глазами\nШприц 1,1 мл\nВводится в жировой слой / поверхностную фасцию\nСтандартный курс: 3 процедуры с интервалом 4 недели"
+  },
+  {
+    "name": "LEXYAL LIPO",
+    "category": "LEXYAL",
+    "variants": [],
+    "packaging": "1 vial",
+    "info": "LEXYAL LIPO is a lipolytic solution for localized fat reduction, built on a different mechanism than the PPC/deoxycholic-acid lipolytics elsewhere in this catalogue — completely PPC- and steroid-free.\n\nActive base (per packaging): riboflavin, lecithin, papain\n10 mL vial",
+    "search": "LEXYAL LIPO",
+    "infoRu": "LEXYAL LIPO — липолитический раствор для локальной коррекции жировых отложений, работает по механизму, отличному от липолитиков на основе PPC/дезоксихолевой кислоты в остальном каталоге — полностью без PPC и стероидов.\n\nСостав (по данным упаковки): рибофлавин, лецитин, папаин\nФлакон 10 мл"
+  },
+  {
+    "name": "LEXYAL PLLAWER",
+    "category": "LEXYAL",
+    "variants": [
+      "200mg"
+    ],
+    "packaging": "1 vial",
+    "info": "LEXYAL PLLAWER is a PLLA collagen stimulator for gradual volume restoration and wrinkle improvement — a biostimulator rather than a filler, working by releasing biocompatible, biodegradable poly-L-lactic acid microspheres that trigger the skin's own collagen production.\n\nComposition (per packaging): PLLA (poly-L-lactic acid), sodium hyaluronate, carboxymethyl cellulose, trehalose\n200 mg per vial\nFDA- and CE-approved raw materials",
+    "search": "LEXYAL PLLAWER 200mg",
+    "infoRu": "LEXYAL PLLAWER — биостимулятор коллагена на основе PLLA для постепенного восстановления объёма и коррекции морщин — не филлер, а средство, высвобождающее биосовместимые биоразлагаемые микросферы поли-L-молочной кислоты, запускающие собственную выработку коллагена кожи.\n\nСостав (по данным упаковки): PLLA (поли-L-молочная кислота), гиалуронат натрия, карбоксиметилцеллюлоза, трегалоза\n200 мг на флакон\nСырьё одобрено FDA и CE"
+  },
+  {
+    "name": "LEXYAL REJU",
+    "category": "LEXYAL",
+    "variants": [],
+    "packaging": "5 vials",
+    "info": "LEXYAL REJU combines PN and PDRN in one skin booster — a dual-mechanism approach rather than the single-ingredient PN or PDRN products found elsewhere in this catalogue, aimed at pairing PDRN's faster recovery effect with PN's more gradual, longer-lasting collagen support.\n\n15 mg PN + 15 mg PDRN per vial (1% combined concentration)\n3 mL × 5 vials per box",
+    "search": "LEXYAL REJU",
+    "infoRu": "LEXYAL REJU сочетает ПН и ПДРН в одном бустере — двойной механизм действия вместо изолированного ПН или ПДРН, как в остальных продуктах каталога, направлен на сочетание более быстрого восстановительного эффекта ПДРН с более постепенной, продолжительной коллаген-поддержкой ПН.\n\n15 мг ПН + 15 мг ПДРН на флакон (суммарная концентрация 1%)\n3 мл × 5 флаконов в упаковке"
+  },
+  {
+    "name": "LEXYAL MASK PACK",
+    "category": "LEXYAL",
+    "variants": [],
+    "packaging": "1 pcs",
+    "info": "LEXYAL Mask Pack is a soothing, brightening sheet mask intended for post-procedure skin care following injectable treatments — a dual-function whitening and anti-wrinkle cosmetic rather than a plain hydrating mask.\n\nKey actives (per packaging): Cica exosome, botanical PDRN, 13-hyaluronic acid complex, madecassoside\n30 mL / 1.28 fl oz sheet\nDermatologically tested, suitable for all skin types",
+    "search": "LEXYAL MASK PACK",
+    "infoRu": "LEXYAL Mask Pack — успокаивающая осветляющая тканевая маска для ухода за кожей после инъекционных процедур — косметическое средство двойного действия (отбеливание + anti-age), а не просто увлажняющая маска.\n\nКлючевые компоненты (по данным упаковки): экзосомы Cica, растительный ПДРН, комплекс из 13 видов гиалуроновой кислоты, мадекассозид\n30 мл / 1,28 жидк. унции\nДерматологически протестировано, подходит для всех типов кожи"
   }
 ]
