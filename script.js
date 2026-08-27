@@ -187,6 +187,7 @@ function toggleQuoteItem(productName,btn){
 quoteListItems.addEventListener("click",event=>{
   const btn=event.target.closest(".quoteRemove");
   if(!btn)return;
+  event.stopPropagation();
   toggleQuoteItem(btn.dataset.product);
   refreshProductModalBtn();
 });
