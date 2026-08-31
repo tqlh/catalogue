@@ -3,6 +3,16 @@
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Double J Holdings — Product Catalogue</title>
+<meta name="description" content="Double J Holdings — wholesale supplier of Korean aesthetic and medical beauty products. Browse 140+ products across botulinum toxins, dermal fillers, skin boosters, biostimulators, and lipolytics, including our flagship LEXYAL line.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Double J Holdings — Product Catalogue">
+<meta property="og:description" content="Wholesale Korean aesthetic and medical beauty products — botulinum toxins, dermal fillers, skin boosters, biostimulators, and more.">
+<meta property="og:image" content="https://doublejholdings.vercel.app/logo.png">
+<meta property="og:url" content="https://doublejholdings.vercel.app/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Double J Holdings — Product Catalogue">
+<meta name="twitter:description" content="Wholesale Korean aesthetic and medical beauty products — botulinum toxins, dermal fillers, skin boosters, biostimulators, and more.">
+<meta name="twitter:image" content="https://doublejholdings.vercel.app/logo.png">
 <link rel="icon" type="image/png" href="favicon.png">
 <link rel="apple-touch-icon" href="favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -96,7 +106,10 @@
       </div>
 
       <div id="quoteListSection" class="quoteListSection">
-        <div class="quoteListLabel" data-i18n="quoteListLabel">Products</div>
+        <div class="quoteListHead">
+          <div class="quoteListLabel" data-i18n="quoteListLabel">Products</div>
+          <button type="button" id="quoteClearAll" class="quoteClearAll" data-i18n="clearList" hidden>Clear</button>
+        </div>
         <ul id="quoteListItems" class="quoteListItems"></ul>
         <p id="quoteListEmpty" class="quoteListEmpty" data-i18n="quoteListEmpty">No products added yet — browse the catalogue and tap "Add to Quote List", or just send a general inquiry below.</p>
       </div>

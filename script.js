@@ -6,14 +6,14 @@
 const INQUIRY_ENDPOINT = "https://delicate-poetry.dmitry-kim24.workers.dev";
 /* ============================= */
 
-let products=[], active="All", lang="en";
+let products=[], active="All", lang=(()=>{try{return localStorage.getItem("djh_lang")||"en"}catch{return "en"}})();
 const search=document.querySelector("#search"), grid=document.querySelector("#grid"), cats=document.querySelector("#categories"), count=document.querySelector("#count"), categoryIntro=document.querySelector("#categoryIntro"), empty=document.querySelector("#empty"), modal=document.querySelector("#modal"), modalContent=document.querySelector("#modalContent"), backToTop=document.querySelector("#backToTop"), socialToggle=document.querySelector("#socialToggle"), socialDropdown=document.querySelector("#socialDropdown"), socialMenu=document.querySelector(".socialMenu"), zoomOverlay=document.querySelector("#zoomOverlay"), zoomImg=document.querySelector("#zoomImg");
 
 const copy={
   en:{eyebrow:"MEDICAL BEAUTY PRODUCTS",title:"Product Catalogue",subtitle:"Premium Korean aesthetic products, presented by product line and available format.",search:"Search products…",clickHint:"Click a product to view details",empty:"No products found.",available:"Available formats",packaging:"Packaging",note:"Product information is provided for catalogue and sourcing purposes. Confirm current manufacturer documentation, composition, intended use and regulatory status for the specific product and destination market before use.",productLine:"product line",productLines:"product lines",formats:"formats total",footer:"Korean Aesthetic Products · Global Distribution",connect:"Connect",followLabel:"Follow",chatLabel:"Chat with us",channelLabel:"Channel · t.me/doublej_holdings",msgLabel:"Send a message",
-    addToQuote:"Add to Quote List",removeFromQuote:"Remove from Quote List",quoteBtn:"Quote List",inquiryEyebrow:"GET IN TOUCH",inquiryTitle:"Your Quote Request",inquirySub:"Add products as you browse, then leave your details below.",fieldName:"Name",fieldPhone:"Phone",fieldEmail:"Email",fieldProduct:"Product",fieldInstagram:"Instagram",fieldMessage:"Message",fieldMessagePh:"Quantities, timeline, destination market…",specsLabel:"Specifications",inquiryHint:"Please provide a phone number, email, or Instagram handle so we can reach you. (Just one is enough 😊)",inquirySend:"Send Inquiry",inquirySending:"Sending…",inquirySent:"Thank you — your inquiry has been sent. We'll contact you shortly.",inquiryErrNoContact:"Please add a phone number, email, or Instagram handle.",inquiryErrName:"Please enter your name.",inquiryErrEmail:"Please enter a valid email address.",inquiryErrPhone:"Please enter a valid phone number.",inquiryErrSend:"Something went wrong. Please try WhatsApp or Telegram instead — links are in Connect, top right.",quoteListLabel:"Products",quoteListEmpty:"No products added yet — browse the catalogue and tap \"Add to Quote List\", or just send a general inquiry below.",removeItem:"Remove"},
+    addToQuote:"Add to Quote List",removeFromQuote:"Remove from Quote List",quoteBtn:"Quote List",inquiryEyebrow:"GET IN TOUCH",inquiryTitle:"Your Quote Request",inquirySub:"Add products as you browse, then leave your details below.",fieldName:"Name",fieldPhone:"Phone",fieldEmail:"Email",fieldProduct:"Product",fieldInstagram:"Instagram",fieldMessage:"Message",fieldMessagePh:"Quantities, timeline, destination market…",specsLabel:"Specifications",inquiryHint:"Please provide a phone number, email, or Instagram handle so we can reach you. (Just one is enough 😊)",inquirySend:"Send Inquiry",inquirySending:"Sending…",inquirySent:"Thank you — your inquiry has been sent. We'll contact you shortly.",inquiryErrNoContact:"Please add a phone number, email, or Instagram handle.",inquiryErrName:"Please enter your name.",inquiryErrEmail:"Please enter a valid email address.",inquiryErrPhone:"Please enter a valid phone number.",inquiryErrSend:"Something went wrong. Please try WhatsApp or Telegram instead — links are in Connect, top right.",quoteListLabel:"Products",quoteListEmpty:"No products added yet — browse the catalogue and tap \"Add to Quote List\", or just send a general inquiry below.",removeItem:"Remove",clearList:"Clear",copyLink:"Copy link",linkCopied:"Copied!"},
   ru:{eyebrow:"ЭСТЕТИЧЕСКАЯ МЕДИЦИНА",title:"Каталог продукции",subtitle:"Премиальная корейская эстетическая продукция по линейкам и доступным форматам.",search:"Поиск продукции…",clickHint:"Нажмите на продукт, чтобы посмотреть детали",empty:"Ничего не найдено.",available:"Доступные форматы",packaging:"Упаковка",note:"Информация представлена для целей каталога и подбора продукции. Перед применением необходимо подтвердить актуальную документацию производителя, состав, назначение и регистрационный статус конкретного продукта для страны назначения.",productLine:"товарная позиция",productLines:"товарных позиций",formats:"форматов всего",footer:"Корейская эстетическая продукция · Глобальная дистрибуция",connect:"Контакты",followLabel:"Мы в соцсетях",chatLabel:"Написать нам",channelLabel:"Канал · t.me/doublej_holdings",msgLabel:"Написать сообщение",
-    addToQuote:"Добавить в список запроса",removeFromQuote:"Убрать из списка",quoteBtn:"Сделать запрос",inquiryEyebrow:"СВЯЗАТЬСЯ С НАМИ",inquiryTitle:"Ваш запрос",inquirySub:"Добавляйте товары по мере просмотра, затем оставьте свои данные ниже.",fieldName:"Имя",fieldPhone:"Телефон",fieldEmail:"Email",fieldProduct:"Продукт",fieldInstagram:"Instagram",fieldMessage:"Сообщение",fieldMessagePh:"Количество, сроки, страна назначения…",specsLabel:"Характеристики",inquiryHint:"Укажите телефон, email или Instagram, чтобы мы могли с вами связаться. (Достаточно одного 😊)",inquirySend:"Отправить запрос",inquirySending:"Отправка…",inquirySent:"Спасибо — ваш запрос отправлен. Мы скоро с вами свяжемся.",inquiryErrNoContact:"Пожалуйста, укажите телефон, email или Instagram.",inquiryErrName:"Пожалуйста, укажите ваше имя.",inquiryErrEmail:"Пожалуйста, укажите корректный email.",inquiryErrPhone:"Пожалуйста, укажите корректный номер телефона.",inquiryErrSend:"Что-то пошло не так. Попробуйте написать в WhatsApp или Telegram — ссылки в разделе «Контакты» вверху справа.",quoteListLabel:"Товары",quoteListEmpty:"Пока ничего не добавлено — просматривайте каталог и нажимайте «Добавить в список запроса», либо отправьте общий запрос ниже.",removeItem:"Убрать"}
+    addToQuote:"Добавить в список запроса",removeFromQuote:"Убрать из списка",quoteBtn:"Сделать запрос",inquiryEyebrow:"СВЯЗАТЬСЯ С НАМИ",inquiryTitle:"Ваш запрос",inquirySub:"Добавляйте товары по мере просмотра, затем оставьте свои данные ниже.",fieldName:"Имя",fieldPhone:"Телефон",fieldEmail:"Email",fieldProduct:"Продукт",fieldInstagram:"Instagram",fieldMessage:"Сообщение",fieldMessagePh:"Количество, сроки, страна назначения…",specsLabel:"Характеристики",inquiryHint:"Укажите телефон, email или Instagram, чтобы мы могли с вами связаться. (Достаточно одного 😊)",inquirySend:"Отправить запрос",inquirySending:"Отправка…",inquirySent:"Спасибо — ваш запрос отправлен. Мы скоро с вами свяжемся.",inquiryErrNoContact:"Пожалуйста, укажите телефон, email или Instagram.",inquiryErrName:"Пожалуйста, укажите ваше имя.",inquiryErrEmail:"Пожалуйста, укажите корректный email.",inquiryErrPhone:"Пожалуйста, укажите корректный номер телефона.",inquiryErrSend:"Что-то пошло не так. Попробуйте написать в WhatsApp или Telegram — ссылки в разделе «Контакты» вверху справа.",quoteListLabel:"Товары",quoteListEmpty:"Пока ничего не добавлено — просматривайте каталог и нажимайте «Добавить в список запроса», либо отправьте общий запрос ниже.",removeItem:"Убрать",clearList:"Очистить",copyLink:"Скопировать ссылку",linkCopied:"Скопировано!"}
 };
 const catRu={"FILLER":"ФИЛЛЕРЫ","BODY FILLER":"ФИЛЛЕРЫ ДЛЯ ТЕЛА","PDRN / PN":"PDRN / PN","EXOSOME":"ЭКЗОСОМЫ","HA / HYDRATION":"ГА / УВЛАЖНЕНИЕ","COLLAGEN / REPAIR":"КОЛЛАГЕН / ВОССТАНОВЛЕНИЕ","COLLAGEN STIMULATORS / REGENERATIVE":"СТИМУЛЯТОРЫ КОЛЛАГЕНА / РЕГЕНЕРАЦИЯ","NUMBING CREAM":"АНЕСТЕЗИРУЮЩИЕ КРЕМЫ","INJECTIONS / SOLUTIONS":"ИНЪЕКЦИИ / РАСТВОРЫ","TOXINS":"ТОКСИНЫ","LIPOLYTIC":"ЛИПОЛИТИКИ"};
 const categoryIntros={
@@ -84,7 +84,7 @@ function applyLang(){
    (X button, backdrop/blank tap, Escape) removes its history entry too,
    so the two stay in sync either way. */
 let layerStack=[], suppressPopstate=false;
-function pushLayer(name){history.pushState({dblLayer:name},"");layerStack.push(name)}
+function pushLayer(name,url){try{history.pushState({dblLayer:name},"",url)}catch{}layerStack.push(name)}
 function popLayer(name){
   const i=layerStack.lastIndexOf(name);
   if(i===-1)return;
@@ -110,10 +110,31 @@ function renderDescription(text){
   return generalHtml+specsHtml;
 }
 function close(fromPopstate){modal.hidden=true;document.body.classList.remove("modalOpen");if(!fromPopstate)popLayer("modal")}
-fetch("products.json").then(response=>response.json()).then(data=>{products=data;buildCategories();render()});
+function openProductModal(product,options){
+  options=options||{};
+  const variants=product.variants?.length?`<div class="variantBlock"><div class="variantLabel">${t("available")}</div><div class="variants">${product.variants.map(variant=>`<span>${esc(variant)}</span>`).join("")}</div></div>`:"";
+  const slug=product.image||slugify(product.name);
+  modalContent.innerHTML=`<div class="modalGrid"><div class="modalText"><div class="modalCat">${esc(catLabel(product.category))}</div><div class="modalTitleRow"><h2>${esc(product.name)}</h2><button type="button" class="copyLinkBtn" id="copyLinkBtn" aria-label="${t("copyLink")}"><span class="copyLinkIcon">🔗</span><span class="copyLinkLabel">${t("copyLink")}</span></button></div>${variants}<div class="meta"><strong>${t("packaging")}:</strong> ${esc(localizePack(product.packaging)||"—")}</div><div class="description">${renderDescription(lang==='ru'?(product.infoRu||product.info):product.info)}</div>${quoteToggleBtnHtml(product.name)}<div class="note">${t("note")}</div></div><div class="modalImage"><img src="images/${slug}.jpg" alt="${esc(product.name)}" onerror="onProductImgError(this,'${slug}')"></div></div>`;
+  modal.hidden=false;
+  document.body.classList.add("modalOpen");
+  const linkSlug=slugify(product.name);
+  if(options.replaceBase){try{history.replaceState(null,"",location.pathname+location.search)}catch{}}
+  pushLayer("modal","#"+linkSlug);
+}
+function findProductBySlug(hashSlug){
+  return products.find(product=>slugify(product.name)===hashSlug);
+}
+fetch("products.json").then(response=>response.json()).then(data=>{
+  products=data;buildCategories();render();
+  const hashSlug=location.hash.replace(/^#/,"");
+  if(hashSlug){
+    const product=findProductBySlug(hashSlug);
+    if(product)openProductModal(product,{replaceBase:true});
+  }
+});
 cats.addEventListener("click",event=>{if(!event.target.matches(".cat"))return;active=event.target.dataset.cat;buildCategories();render()});
 search.addEventListener("input",render);
-document.querySelectorAll(".lang").forEach(button=>button.addEventListener("click",()=>{lang=button.dataset.lang;applyLang()}));
+document.querySelectorAll(".lang").forEach(button=>button.addEventListener("click",()=>{lang=button.dataset.lang;try{localStorage.setItem("djh_lang",lang)}catch{}applyLang()}));
 function slugify(name){return name.toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/(^-+|-+$)/g,"")}
 function onProductImgError(img,slug){
   if(img.dataset.step==="png"){img.closest(".modalImage").classList.add("noImage");img.remove();return}
@@ -122,26 +143,33 @@ function onProductImgError(img,slug){
 grid.addEventListener("click",event=>{
   const card=event.target.closest(".card"); if(!card)return;
   const product=products[+card.dataset.i];
-  const variants=product.variants?.length?`<div class="variantBlock"><div class="variantLabel">${t("available")}</div><div class="variants">${product.variants.map(variant=>`<span>${esc(variant)}</span>`).join("")}</div></div>`:"";
-  const slug=product.image||slugify(product.name);
-  modalContent.innerHTML=`<div class="modalGrid"><div class="modalText"><div class="modalCat">${esc(catLabel(product.category))}</div><h2>${esc(product.name)}</h2>${variants}<div class="meta"><strong>${t("packaging")}:</strong> ${esc(localizePack(product.packaging)||"—")}</div><div class="description">${renderDescription(lang==='ru'?(product.infoRu||product.info):product.info)}</div>${quoteToggleBtnHtml(product.name)}<div class="note">${t("note")}</div></div><div class="modalImage"><img src="images/${slug}.jpg" alt="${esc(product.name)}" onerror="onProductImgError(this,'${slug}')"></div></div>`;
-  modal.hidden=false;
-  document.body.classList.add("modalOpen");
-  pushLayer("modal");
+  openProductModal(product);
 });
 modalContent.addEventListener("click",event=>{
-  const btn=event.target.closest(".inquireProductBtn");
-  if(btn)toggleQuoteItem(btn.dataset.product,btn);
+  const copyBtn=event.target.closest("#copyLinkBtn");
+  if(copyBtn){
+    const url=location.origin+location.pathname+location.hash;
+    const done=()=>{
+      copyBtn.classList.add("copied");
+      copyBtn.querySelector(".copyLinkIcon").textContent="✓";
+      copyBtn.querySelector(".copyLinkLabel").textContent=t("linkCopied");
+      setTimeout(()=>{copyBtn.classList.remove("copied");copyBtn.querySelector(".copyLinkIcon").textContent="🔗";copyBtn.querySelector(".copyLinkLabel").textContent=t("copyLink")},1800);
+    };
+    if(navigator.clipboard&&navigator.clipboard.writeText){
+      navigator.clipboard.writeText(url).then(done).catch(()=>{});
+    }
+    return;
+  }
+  const quoteBtn=event.target.closest(".inquireProductBtn");
+  if(quoteBtn){toggleQuoteItem(quoteBtn.dataset.product,quoteBtn);return}
+  const img=event.target.closest(".modalImage img");
+  if(img)openZoom(img.src,img.alt);
 });
 document.querySelector(".backdrop").addEventListener("click",()=>close());
 document.querySelector("#close").addEventListener("click",()=>close());
 function closeSocial(){socialMenu.classList.remove("open");socialDropdown.hidden=true;socialToggle.setAttribute("aria-expanded","false")}
 function openZoom(src,alt){zoomImg.src=src;zoomImg.alt=alt;zoomOverlay.hidden=false;pushLayer("zoom")}
 function closeZoom(fromPopstate){zoomOverlay.hidden=true;zoomImg.src="";if(!fromPopstate)popLayer("zoom")}
-modalContent.addEventListener("click",event=>{
-  const img=event.target.closest(".modalImage img");
-  if(img)openZoom(img.src,img.alt);
-});
 zoomOverlay.addEventListener("click",()=>closeZoom());
 socialToggle.addEventListener("click",event=>{
   event.stopPropagation();
@@ -157,8 +185,15 @@ backToTop.addEventListener("click",()=>window.scrollTo({top:0,behavior:"smooth"}
 updateScrollState();
 
 /* ====== Quote list + inquiry drawer (sends to Telegram) ====== */
-let quoteItems=[]; // array of product name strings
-const inquiryModal=document.querySelector("#inquiryModal"), inquiryForm=document.querySelector("#inquiryForm"), inquiryStatus=document.querySelector("#inquiryStatus"), inquirySubmit=document.querySelector("#inquirySubmit"), quoteBtn=document.querySelector("#quoteBtn"), quoteBadge=document.querySelector("#quoteBadge"), inquiryClose=document.querySelector("#inquiryClose"), quoteListItems=document.querySelector("#quoteListItems"), quoteListEmpty=document.querySelector("#quoteListEmpty");
+function loadQuoteItems(){
+  try{ return JSON.parse(localStorage.getItem("djh_quoteItems")||"[]"); }
+  catch{ return []; }
+}
+function saveQuoteItems(){
+  try{ localStorage.setItem("djh_quoteItems",JSON.stringify(quoteItems)); }catch{}
+}
+let quoteItems=loadQuoteItems(); // array of product name strings
+const inquiryModal=document.querySelector("#inquiryModal"), inquiryForm=document.querySelector("#inquiryForm"), inquiryStatus=document.querySelector("#inquiryStatus"), inquirySubmit=document.querySelector("#inquirySubmit"), quoteBtn=document.querySelector("#quoteBtn"), quoteBadge=document.querySelector("#quoteBadge"), inquiryClose=document.querySelector("#inquiryClose"), quoteListItems=document.querySelector("#quoteListItems"), quoteListEmpty=document.querySelector("#quoteListEmpty"), quoteClearAll=document.querySelector("#quoteClearAll");
 
 function quoteToggleBtnHtml(productName){
   const inList=quoteItems.includes(productName);
@@ -175,8 +210,10 @@ function refreshProductModalBtn(){
 function renderQuoteList(){
   quoteListItems.innerHTML=quoteItems.map(name=>`<li><span>${esc(name)}</span><button type="button" class="quoteRemove" data-product="${esc(name)}" aria-label="${t("removeItem")}">×</button></li>`).join("");
   quoteListEmpty.hidden=quoteItems.length>0;
+  quoteClearAll.hidden=quoteItems.length===0;
   quoteBadge.hidden=quoteItems.length===0;
   quoteBadge.textContent=quoteItems.length;
+  saveQuoteItems();
 }
 function toggleQuoteItem(productName,btn){
   const i=quoteItems.indexOf(productName);
@@ -189,6 +226,12 @@ quoteListItems.addEventListener("click",event=>{
   if(!btn)return;
   event.stopPropagation();
   toggleQuoteItem(btn.dataset.product);
+  refreshProductModalBtn();
+});
+quoteClearAll.addEventListener("click",event=>{
+  event.stopPropagation();
+  quoteItems=[];
+  renderQuoteList();
   refreshProductModalBtn();
 });
 
@@ -266,3 +309,4 @@ inquiryForm.addEventListener("submit",async event=>{
   }
 });
 renderQuoteList();
+applyLang();
